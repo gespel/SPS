@@ -44,8 +44,10 @@ class Renderer:
             job_queues[i % self.num_worker].put((self.rgb[i], i))
 
         results = []
+        counter = 0
         #while not result_queue.empty():
-        for i in tqdm(range(len(self.rgb)), unit=' rows'):
+        while not result_queue.empty() and counter != len(self.rgb):
+        #for i in tqdm(range(len(self.rgb)), unit=' rows'):
             results.append(result_queue.get())
 
 
@@ -64,8 +66,8 @@ def render_worker(job_queue, result_queue):
         for x in range(length):
             pixel = line[x]
             #print(pixel)
-            if pixel[0] > 100:
-                pixel[0] = 0
+            if pixel[0] > 50:
+                pixel[0] = random.randint(0, 255)
                 pixel[1] = 0
 
         result_queue.put((line, index))

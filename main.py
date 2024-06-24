@@ -8,7 +8,7 @@ from tqdm import tqdm
 from renderer import Renderer
 
 def main():
-    r = Renderer(8, "DSC_0896.NEF")
+    r = Renderer(4, "DSC_0896.NEF")
     img_arr = r.render_multicore()
     Image.fromarray(img_arr).save("DSC_0896_GENERATED.tiff")
     print("DONE!")
